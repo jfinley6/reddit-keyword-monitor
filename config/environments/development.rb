@@ -13,6 +13,8 @@ Rails.application.configure do
 
   config.log_level = :info
 
+  config.action_view.logger = nil
+
   # Show full error reports.
   config.consider_all_requests_local = true
 
