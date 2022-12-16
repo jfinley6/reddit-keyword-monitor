@@ -11,7 +11,7 @@ Rails.application.configure do
   # Do not eager load code on boot.
   config.eager_load = false
 
-  config.log_level = :info
+  config.log_level = :warn
 
   config.action_view.logger = nil
 
