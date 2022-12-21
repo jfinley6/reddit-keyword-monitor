@@ -1,15 +1,271 @@
-/*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS (and SCSS, if configured) file within this directory, lib/assets/stylesheets, or any plugin's
- * vendor/assets/stylesheets directory can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any other CSS
- * files in this directory. Styles in this file should be added after the last require_* statement.
- * It is generally better to create a new file per style scope.
- *
- *= require_tree .
- *= require_self
- */
+body {
+  background-color: #5b84b1ff;
+}
+
+h1,
+h2,
+h3 {
+  font-family: "IBM Plex Sans", sans-serif;
+  color: rgb(253, 102, 88);
+  -webkit-text-stroke: 0.5px rgb(36, 36, 36);
+  text-shadow: 0px 4px 3px rgba(0, 0, 0, 0.4), 0px 8px 13px rgba(0, 0, 0, 0.1),
+    0px 18px 23px rgba(0, 0, 0, 0.1);
+  margin-top: 5px;
+}
+
+li {
+  height: 5vh;
+}
+
+.tooltip {
+  position: relative;
+}
+
+.page-title::after {
+  content: "?";
+  position: absolute;
+  top: 15px;
+  font-size: 20px;
+}
+
+.tooltip h3 {
+  margin: 12px 0;
+}
+
+.tooltip .bottom {
+  min-width: 200px;
+  top: 40px;
+  left: 50%;
+  transform: translate(-50%, 0);
+  padding: 20px;
+  color: #666666;
+  background-color: #eeeeee;
+  font-weight: normal;
+  font-size: 13px;
+  border-radius: 8px;
+  position: absolute;
+  z-index: 99999999;
+  box-sizing: border-box;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+  display: none;
+}
+
+.tooltip:hover .bottom {
+  display: block;
+}
+
+.tooltip .bottom img {
+  width: 400px;
+}
+
+.tooltip .bottom i {
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  margin-left: -12px;
+  width: 24px;
+  height: 12px;
+  overflow: hidden;
+}
+
+.tooltip .bottom i::after {
+  content: "";
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  left: 50%;
+  transform: translate(-50%, 50%) rotate(45deg);
+  background-color: #eeeeee;
+  box-shadow: 0 1px 8px rgba(0, 0, 0, 0.5);
+}
+
+.parent {
+  display: grid;
+  grid-template-columns: 3fr 4fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 10px;
+  width: 100%; /* whatever width you like */
+}
+
+.messages {
+  grid-area: 1 / 1 / 2 / 2;
+}
+.posts {
+  grid-area: 1 / 2 / 2 / 3;
+  text-decoration: none;
+}
+
+ol {
+  counter-reset: li; /* Initiate a counter */
+  list-style: none; /* Remove default numbering */
+  *list-style: decimal; /* Keep using default numbering for IE6/7 */
+  font: 15px "trebuchet MS", "lucida sans";
+  padding: 0;
+  margin-bottom: 4em;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+}
+
+ol ol {
+  margin: 0 0 0 2em; /* Add some left margin for inner lists */
+}
+
+.rounded-list {
+  width: 30vw;
+}
+
+.rectangle-list {
+  width: 40vw;
+}
+
+.rounded-list li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.4em 0.4em 0.4em 2em;
+  *padding: 0.4em;
+  margin: 0.5em 0;
+  background: #ddd;
+  color: #444;
+  text-decoration: none;
+  border-radius: 0.3em;
+  content: counter(li);
+}
+
+.rounded-list li:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -1.3em;
+  top: 50%;
+  margin-top: -1.3em;
+  background: #87ceeb;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  border: 0.3em solid #fff;
+  text-align: center;
+  font-weight: bold;
+  border-radius: 2em;
+  transition: all 0.3s ease-out;
+}
+
+.rectangle-list li {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 0.4em 0.4em 0.4em 0.8em;
+  *padding: 0.4em;
+  margin: 0.5em 0 0.5em 0em;
+  background: #ddd;
+  color: #444;
+  text-decoration: none;
+  transition: all 0.3s ease-out;
+}
+
+.rectangle-list li:before {
+  content: counter(li);
+  counter-increment: li;
+  position: absolute;
+  left: -2.5em;
+  top: 50%;
+  margin-top: -1em;
+  background: #fa8072;
+  height: 2em;
+  width: 2em;
+  line-height: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.btn {
+  text-decoration: none;
+  border: none;
+  padding: 12px 40px;
+  font-size: 16px;
+  background-color: rgb(255, 255, 255);
+  color: #fff;
+  border-radius: 5px;
+  box-shadow: 7px 6px 28px 1px rgba(0, 0, 0, 0.24);
+  cursor: pointer;
+  outline: none;
+  transition: 0.2s all;
+}
+
+.btn:active {
+  transform: scale(0.88);
+  /* Scaling button to 0.98 to its original size */
+  box-shadow: 3px 2px 22px 1px rgba(0, 0, 0, 0.24);
+  /* Lowering the shadow */
+}
+
+.checkButton {
+  color: black;
+}
+
+.checkButton:visited {
+  color: black;
+}
+
+.posts:visited {
+  color: blue;
+}
+
+.post-button {
+  cursor: pointer;
+  text-align: center;
+  text-decoration: none;
+  outline: none;
+  color: white;
+  font-weight: bold;
+  font-size: 17px;
+  padding: 8px;
+  padding-top: 2px;
+  padding-bottom: 2px;
+  background-color: green;
+  border: none;
+  border-radius: 15px;
+  box-shadow: 0 5px #999;
+}
+
+.post-button:hover {
+  background-color: #3e8e41;
+}
+
+.post-button:active {
+  background-color: #3e8e41;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+
+@media (max-width: 800px) {
+  .parent {
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(2, 1fr);
+  }
+
+  .messages {
+    grid-area: 1 / 1 / 2 / 2;
+  }
+
+  .posts {
+    grid-area: 2 / 1 / 3 / 2;
+  }
+
+  .rounded-list {
+    width: 50vw;
+  }
+
+  .rectangle-list {
+    width: 50vw;
+  }
+
+  li {
+    width: 50vw;
+    height: 8vh;
+  }
+
+  .rectangle-list li {
+    padding: 0.4em 2em 0.4em 0.8em;
+  }
+}
