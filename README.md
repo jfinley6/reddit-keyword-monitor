@@ -1,5 +1,7 @@
 ## Reddit Keyword Monitor
 
+### ** Project has been adapted to run on the front end. Update to readme coming soon. **
+
 This program allows you to run a task in the background of your computer that checks for certain keywords in reddit posts. The task runs every 1 minute. The length of time can be changed. You are able to specify the subreddit you want to check as well as what words to look for. If it finds a match, it will email you a link to the post. If the program finds a post that it's already notified you about it will ignore it. 
 
 You are going to need two email addresses from gmail for this to work. I would recommend a brand new one in addition to one that you might already have.
@@ -11,6 +13,7 @@ This project was built and requires the following on your computer.
 - Github
 - Ruby [2.7.4](https://github.com/organization/project-name/blob/master/.ruby-version#L1)
 - Rails [7.0.4](https://github.com/organization/project-name/blob/master/Gemfile#L12)
+- Postgresql [14.5](https://wiki.postgresql.org/wiki/Homebrew) *Installed using Homebrew
 
 #### 1. Check out the repository
 
@@ -26,11 +29,19 @@ Run the following command
 bundle install
 ```
 
-#### 3. Create 1-2 gmail accounts
+#### 3. Create and Setup the Database
+
+Run the following command
+
+```bash
+rails db:create db:migrate db:seed
+```
+
+#### 4. Create 1-2 gmail accounts
 
 If you already have the necessary accounts, proceed to step 4. Otherwise, get the right amount of accounts made. One of these emails will be sending an email, and the other receiving. 
 
-#### 4. Retrieve app password for one of the accounts.
+#### 5. Retrieve app password for one of the accounts.
 
 Go to your account settings and click the "Security" button. Proceed to the section that says "Signing into Google".
 
@@ -46,11 +57,11 @@ Click the "Select App" dropdown and give it a custom name of whatever you want. 
 
 Copy the 16 digit password and save it in a safe place. We are going to need it in a future step.
 
-#### 5. Create a .env folder
+#### 6. Create a .env folder
 
 In the root folder of your directory, create a file called .env which is where we'll specify all of our variables for the program. This file is included in the .gitignore file and will not be tracked.
 
-#### 6. Define Variables and Assign values
+#### 7. Define Variables and Assign values
 
 ![.env file](https://i.imgur.com/lELWNKh.png)
 
@@ -63,7 +74,7 @@ Your .env file should match what is above with the x's replaced with your specif
 - SENDER_EMAIL_PASSWORD - This is the 16-digit password we retrieved in step 5.
 - MATCHING_WORDS - This can be any number of words you would like to check for. More than one word should be seperated by a comma with no space in between.
 
-#### 7. Start running your task in the background
+#### 8. Start running your task in the background
 
 Run the following command in your terminal and the program will start checking for Reddit posts every 1 minute. 
 
