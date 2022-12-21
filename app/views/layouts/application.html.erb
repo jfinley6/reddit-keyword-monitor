@@ -1,16 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>RedditMonitor</title>
+    <title>Reddit Post Keyword Monitor</title>
+    <% if Setting.first.refresh == true %>
+      <meta http-equiv="refresh" content=<%= Setting.first.refresh_time %> />
+    <% end %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
-
     <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:ital,wght@1,700&display=swap" rel="stylesheet">
     <%= javascript_importmap_tags %>
+    <%= favicon_link_tag asset_path('favicon.ico') %>
   </head>
-
   <body>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Audiowide">
     <%= yield %>
   </body>
 </html>
