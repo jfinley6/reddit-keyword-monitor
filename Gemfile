@@ -8,12 +8,18 @@ gem "rails", "~> 7.0.4"
 
 gem "net-http"
 
+gem "byebug"
+
+gem "pry"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
 gem "dotenv"
 
 gem 'jquery-rails'
+
+gem 'rainbow'
 
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
