@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_03_033408) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_21_094358) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -19,6 +19,17 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_03_033408) do
     t.string "url"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "keywords"
+  end
+
+  create_table "settings", force: :cascade do |t|
+    t.string "subreddit_name", default: "Denver"
+    t.string "keywords", default: "weather,apartment"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.boolean "refresh", default: false
+    t.string "refresh_time", default: "30"
+    t.boolean "loading", default: false
   end
 
 end
