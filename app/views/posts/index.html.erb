@@ -38,7 +38,6 @@
   <div class="messages" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: break-word">
     <h3 style="margin-bottom: 0">Activity Log (last 10) <%= link_to "Delete All", "/delete_all_logs", class:"post-button" %>
 </h3>
-    <div style="position: relative">
       <ol class="rounded-list">
         <% @display_messages.each do |message| %>
           <li><%= message %></li>
@@ -47,7 +46,6 @@
           <li>Only <%= pluralize @display_messages.count, "activity log"  %> in database</li>
         <% end %>
       </ol>
-    </div>
   </div>
   <div class="posts" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: anywhere">
     <h3 style="margin-bottom: 0">Matching Posts (last 10) <%= link_to "Delete All", "/delete_all_posts", class:"post-button" %></h3>
