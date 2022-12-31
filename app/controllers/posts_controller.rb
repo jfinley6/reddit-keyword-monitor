@@ -3,7 +3,6 @@ require 'pry'
 class PostsController < ApplicationController
 
     def index
-        # Setting.first.update(loading: false)
         @messages = IO.readlines('log/development.log')
         @logs = `tail -n 10 log/development.log`
         @display_messages = @messages.last(10).reverse
@@ -27,11 +26,7 @@ class PostsController < ApplicationController
         end
     end
 
-    def show
-        # Setting.first.update(loading: true)
-        Post.check_reddit_posts
-        redirect_to root_path
-    end
+    
 
     def auto_check_posts
         if Setting.first.refresh == false
@@ -78,6 +73,28 @@ class PostsController < ApplicationController
     def delete_all_logs
         File.truncate('log/development.log', 0)
         redirect_to root_path
+    end
+
+    def show
+        Post.check_reddit_posts
+
+        update_messages
+    end
+
+    private
+
+    def update_messages
+        @messages = IO.readlines('log/development.log').last(10).reverse
+        if @messages.count < 10
+            @empty_log = 10 - @messages.count
+        else
+            @empty_log = 0
+        end
+        render turbo_stream:
+            turbo_stream.replace(:messages,
+                partial: "posts/messages",
+                locals: { display_messages: @messages, empty_log: @empty_log } 
+            )
     end
 
 end
