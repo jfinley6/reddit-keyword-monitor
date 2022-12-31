@@ -7,7 +7,7 @@
 <div class="tooltip" style="text-align: center">
     <h1 class="page-title">Reddit Post Keyword Monitor </h1>
 </div>
-<h3 style="text-align: center">Subreddit Currently Monitoring: <%= Setting.first.subreddit_name %> </h3>
+<%= render partial: "posts/subreddit", locals: { subreddit_name: @subreddit_name } %>
 <h3 style="text-align: center">Selected Keywords: <%= Setting.first.keywords.gsub(",", ", ") %> </h3>
 <% if Setting.first.refresh == false %>
 <div style="display: flex; justify-content: center">
@@ -33,7 +33,7 @@
 </div>
 <div class="parent">
   <div class="messages" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: break-word">
-    <h3 style="margin-bottom: 0">Activity Log (last 10) <%= link_to "Delete All", "/delete_all_logs", class:"post-button" %>
+    <h3 style="margin-bottom: 0">Activity Log (last 10) <%= link_to "Delete All", "/delete_all_messages", class:"post-button" %>
 </h3>
       <ol class="rounded-list">
           <%= render partial: "posts/messages", locals: { display_messages: @display_messages } %>
