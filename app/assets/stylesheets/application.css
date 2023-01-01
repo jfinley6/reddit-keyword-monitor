@@ -19,13 +19,21 @@ body {
 
 /* Safari */
 @-webkit-keyframes spin {
-  0% { -webkit-transform: rotate(0deg); }
-  100% { -webkit-transform: rotate(360deg); }
+  0% {
+    -webkit-transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(360deg);
+  }
 }
 
 @keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
 }
 
 h1,
@@ -41,6 +49,38 @@ h3 {
 
 li {
   height: 5vh;
+}
+
+.post-item {
+  display: grid;
+  grid-template-columns: 0.85fr 0.15fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 0px;
+  grid-row-gap: 0px;
+}
+
+.post-child-1 {
+  text-decoration: none;
+  grid-area: 1 / 1 / 2 / 2;
+}
+
+.post-child-1:visited {
+  color: blue;
+}
+
+.post-child-2 {
+  grid-area: 1 / 2 / 2 / 3;
+  display: flex;
+  justify-content: center;
+  color: black;
+  text-decoration: none;
+  font-size: 0.7em;
+}
+
+.post-child-2:hover {
+  transform: scale(1.5);
+  cursor: pointer;
+  color: red
 }
 
 .parent {
@@ -115,10 +155,10 @@ ol ol {
 
 .rectangle-list li {
   position: relative;
-  display: flex;
   align-items: center;
   padding: 0.4em 0.4em 0.4em 0.8em;
   *padding: 0.4em;
+  padding-right: 15px;
   margin: 0.5em 0 0.5em 0em;
   background: #ddd;
   color: #444;
@@ -232,4 +272,8 @@ ol ol {
   .rectangle-list li {
     padding: 0.4em 2em 0.4em 0.8em;
   }
+
+  /* .post-child-2 {
+    justify-content: flex-end;
+  } */
 }
