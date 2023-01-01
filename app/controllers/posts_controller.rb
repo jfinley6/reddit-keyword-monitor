@@ -16,8 +16,6 @@ class PostsController < ApplicationController
         end
     end
 
-    
-
     def auto_check_posts
         if Setting.first.refresh == false
             system "whenever --update-crontab"
@@ -80,11 +78,17 @@ class PostsController < ApplicationController
         update_messages_and_posts
     end
 
+    def delete_post
+        post = Post.find(params[:post_id])
+        post.update(deleted: true)
+
+        update_messages_and_posts
+    end
     
     private
 
     def get_posts
-        @posts = Post.all.limit(10).order("id DESC")
+        @posts = Post.where("deleted = false").limit(10).order("id DESC")
 
         if @posts.count < 10
             @empty_posts = 10 - @posts.count
