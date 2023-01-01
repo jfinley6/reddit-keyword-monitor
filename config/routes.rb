@@ -10,4 +10,5 @@ Rails.application.routes.draw do
   get "/delete_all_posts", to: "posts#delete_all_posts"
   get "/delete_all_messages", to: "posts#delete_all_messages"
   get "/auto_check", to: "posts#auto_check_posts"
+  get "/delete_post/:post_id", to: "posts#delete_post"
 end
