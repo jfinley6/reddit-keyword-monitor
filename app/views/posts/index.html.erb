@@ -17,20 +17,22 @@
 <div style="display: flex; justify-content: center; margin-bottom: 15px">
   <%= link_to @auto_title, "/auto_check", style: "text-decoration: none; margin-top: 10px", class: "post-button"  %>
 </div>
-<div style="display: flex; justify-content: space-evenly">
-  <%= form_tag "/edit_subreddit_cookies", method: :get do %>
-    <div style="display: flex; flex-direction: column; align-items: center;  padding-bottom: 10px">
-      <%= text_field_tag :subreddit_name, Setting.first.subreddit_name, style: "border: 2px solid blue; border-radius: 4px; height: 20px", autocomplete: 'off' %>
-      <%= submit_tag "Update Subreddit", class: "post-button", style: "margin-top: 8px" %>
-    </div>
-  <% end %>
-  <%= form_tag "/edit_keywords_cookies", method: :get do %>
-    <div style="display: flex; flex-direction: column; align-items: center;  padding-bottom: 10px">
-      <%= text_field_tag :keywords, Setting.first.keywords, style: "border: 2px solid blue; border-radius: 4px; height: 20px", autocomplete: 'off' %>
-      <%= submit_tag "Update Keywords", class: "post-button", style: "margin-top: 8px" %>
-    </div>
-  <% end %>
-</div>
+<% if Setting.first.refresh == false %>
+  <div style="display: flex; justify-content: space-evenly">
+    <%= form_tag "/edit_subreddit_cookies", method: :get do %>
+      <div style="display: flex; flex-direction: column; align-items: center;  padding-bottom: 10px">
+        <%= text_field_tag :subreddit_name, Setting.first.subreddit_name, style: "border: 2px solid blue; border-radius: 4px; height: 20px", autocomplete: 'off' %>
+        <%= submit_tag "Update Subreddit", class: "post-button", style: "margin-top: 8px" %>
+      </div>
+    <% end %>
+    <%= form_tag "/edit_keywords_cookies", method: :get do %>
+      <div style="display: flex; flex-direction: column; align-items: center;  padding-bottom: 10px">
+        <%= text_field_tag :keywords, Setting.first.keywords, style: "border: 2px solid blue; border-radius: 4px; height: 20px", autocomplete: 'off' %>
+        <%= submit_tag "Update Keywords", class: "post-button", style: "margin-top: 8px" %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
 <div class="parent">
   <div class="messages" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: break-word">
     <h3 style="margin-bottom: 0">Activity Log (last 10) <%= link_to "Delete All", "/delete_all_messages", class:"post-button" %>
@@ -42,14 +44,7 @@
   <div class="posts" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: anywhere">
     <h3 style="margin-bottom: 0">Matching Posts (last 10) <%= link_to "Delete All", "/delete_all_posts", class:"post-button" %></h3>
     <ol class="rectangle-list">
-      <% @posts.each do |post| %>
-        <li>
-          <%= highlight("<a target='_blank' class='posts' href='https://reddit.com#{post.url}'>#{post.url}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
-        </li>
-      <% end %>
-      <% @empty_posts.times do %>
-        <li>Only <%= pluralize @posts.count, "post"  %> in database</li>
-      <% end %>
+      <%= render partial: "posts/posts", locals: { posts: @posts } %>
     </ul>
   </div>
 </div>
