@@ -1,0 +1,10 @@
+<%= turbo_frame_tag "posts" do %>
+    <% posts.each do |post| %>
+        <li>
+          <%= highlight("<a target='_blank' class='posts' href='https://reddit.com#{post.url}'>#{post.url}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
+        </li>
+      <% end %>
+      <% @empty_posts.times do %>
+        <li>Only <%= pluralize @posts.count, "post"  %> in database</li>
+      <% end %>
+<% end %>
