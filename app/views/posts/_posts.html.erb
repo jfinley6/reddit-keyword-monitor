@@ -1,7 +1,8 @@
 <%= turbo_frame_tag "posts" do %>
     <% posts.each do |post| %>
-        <li>
-          <%= highlight("<a target='_blank' class='posts' href='https://reddit.com#{post.url}'>#{post.url}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
+        <li class="post-item">
+          <%= highlight("<a target='_blank' class='post-child-1' href='https://reddit.com#{post.url}'>#{post.url}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
+          <%= link_to "Delete", "/delete_post/#{post.id}", class: "post-child-2" %>
         </li>
       <% end %>
       <% @empty_posts.times do %>
