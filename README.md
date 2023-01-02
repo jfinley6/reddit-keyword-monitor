@@ -1,6 +1,6 @@
 ## Reddit Keyword Monitor
 
-This program allows you to run a task in the background of your computer that checks for certain keywords in reddit posts. The task runs every 1 minute. You are able to specify the subreddit you want to check as well as what words to look for. If it finds a match, it will email you a link to the post. If the program finds a post that it's already notified you about, it will ignore it. 
+This program allows you to run a task in the background of your computer that checks for certain keywords in recent reddit posts. The task runs every 1 minute. You are able to specify the subreddit you want to check as well as what words to look for. If it finds a match, it will email you a link to the post. If the program finds a post that it's already notified you about, it will ignore it. 
 
 You are going to need two email addresses from gmail for this to work. I would recommend a brand new one in addition to one that you might already have.
 
