@@ -55,9 +55,11 @@ Click the "Select App" dropdown and give it a custom name of whatever you want. 
 
 Copy the 16 digit password and save it in a safe place. We are going to need it in a future step.
 
-#### 6. Create a .env folder
+#### 6. Create a application.yml file and development.log file
 
 In the config folder, create a file called application.yml which is where we'll specify all of our variables for the program. This file is included in the .gitignore file and will not be tracked.
+
+In the log folder, create a file called development.log which is where the program will output it's results to.
 
 #### 7. Define Variables and Assign values
 
