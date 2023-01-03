@@ -1,6 +1,6 @@
 ## Reddit Keyword Monitor
 
-This program allows you to run a task in the background of your computer that checks for certain keywords in reddit posts. The task runs every 1 minute. You are able to specify the subreddit you want to check as well as what words to look for. If it finds a match, it will email you a link to the post. If the program finds a post that it's already notified you about, it will ignore it. 
+This program allows you to run a task in the background of your computer that checks for certain keywords in recent reddit posts. The task runs every 1 minute. You are able to specify the subreddit you want to check as well as what words to look for. If it finds a match, it will email you a link to the post. If the program finds a post that it's already notified you about, it will ignore it. 
 
 You are going to need two email addresses from gmail for this to work. I would recommend a brand new one in addition to one that you might already have.
 
@@ -55,9 +55,11 @@ Click the "Select App" dropdown and give it a custom name of whatever you want. 
 
 Copy the 16 digit password and save it in a safe place. We are going to need it in a future step.
 
-#### 6. Create a .env folder
+#### 6. Create a application.yml file and development.log file
 
 In the config folder, create a file called application.yml which is where we'll specify all of our variables for the program. This file is included in the .gitignore file and will not be tracked.
+
+In the log folder, create a file called development.log which is where the program will output it's results to.
 
 #### 7. Define Variables and Assign values
 
