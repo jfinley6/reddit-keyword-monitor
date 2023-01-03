@@ -41,6 +41,8 @@ gem "jbuilder"
 
 gem "figaro"
 
+gem "rspec"
+
 gem "httpparty"
 
 gem 'whenever', require: false
