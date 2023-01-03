@@ -20,11 +20,11 @@ class PostsController < ApplicationController
         if Setting.first.refresh == false
             system "whenever --update-crontab"
             Setting.first.update(refresh: true)
-            redirect_to root_path
+            refresh_page
         else
             system "crontab -r"
             Setting.first.update(refresh: false)
-            redirect_to root_path
+            refresh_page
         end
     end
     
@@ -86,6 +86,14 @@ class PostsController < ApplicationController
     end
     
     private
+
+    def refresh_page
+        respond_to do |format|
+                format.js {
+                    render "posts/refresh"
+                }
+        end
+    end
 
     def get_posts
         @posts = Post.where("deleted = false").limit(10).order("id DESC")
