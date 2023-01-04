@@ -44,7 +44,7 @@ class PostsController < ApplicationController
             return
         end
         Setting.first.update(subreddit_name: params[:subreddit_name])
-        logger.warn "Subreddit name changed to " + params[:subreddit_name].to_s + " at " + Time.now.strftime("%H:%M:%S")
+        logger.warn "Subreddit name changed to " + params[:subreddit_name].to_s + " at " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
         
         get_messages
         render turbo_stream: [
@@ -59,9 +59,9 @@ class PostsController < ApplicationController
 
     def delete_all_posts
         if Post.all.count == 0
-            logger.warn "No Posts To Delete at " + Time.now.strftime("%H:%M:%S")
+            logger.warn "No Posts To Delete at " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
         else
-           logger.warn "All Posts Deleted at " + Time.now.strftime("%H:%M:%S") 
+           logger.warn "All Posts Deleted at " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
         end
         Post.destroy_all
         update_messages_and_posts
