@@ -6,6 +6,6 @@
         </li>
       <% end %>
       <% @empty_posts.times do %>
-        <li style="display: flex">Only <%= pluralize @posts.count, "post"  %> in database</li>
+        <li style="display: flex"><%= pluralize @posts.count, "post"  %> in database</li>
       <% end %>
 <% end %>
