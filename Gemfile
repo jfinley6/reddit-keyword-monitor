@@ -73,11 +73,13 @@ group :development, :test do
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
 end
 
-group :development do
+group :development, :test do
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem "web-console"
   gem 'rspec-rails'
   gem 'factory_bot_rails'
+  gem "capybara"
+  gem "selenium-webdriver"
+  gem "webdrivers"
 
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
@@ -87,8 +89,9 @@ group :development do
 end
 
 group :test do
-  # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
-  gem "capybara"
-  gem "selenium-webdriver"
-  gem "webdrivers"
+  gem "webmock"
+end
+
+group :development do
+  gem "web-console"
 end
