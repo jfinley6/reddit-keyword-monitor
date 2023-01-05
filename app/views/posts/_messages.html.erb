@@ -3,6 +3,6 @@
           <li><%= message %></li>
         <% end %>
     <% @empty_log.times do %>
-        <li>Only <%= pluralize display_messages.count, "activity log"  %> in database</li>
+        <li><%= pluralize display_messages.count, "activity log"  %> in database</li>
     <% end %>
 <% end %>
