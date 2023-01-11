@@ -51,9 +51,18 @@ li {
   height: 5vh;
 }
 
+.previewButton:visited {
+  color: blue;
+
+}
+
+.previewButton, .deleteButton {
+  text-decoration: none;
+}
+
 .post-item {
   display: grid;
-  grid-template-columns: 0.85fr 0.15fr;
+  grid-template-columns: 0.75fr 0.25fr;
   grid-template-rows: 1fr;
   grid-column-gap: 0px;
   grid-row-gap: 0px;
@@ -71,13 +80,14 @@ li {
 .post-child-2 {
   grid-area: 1 / 2 / 2 / 3;
   display: flex;
-  justify-content: center;
+  justify-content: space-evenly;
   color: black;
   text-decoration: none;
   font-size: 0.7em;
+  margin-right: 5px;
 }
 
-.post-child-2:hover {
+.previewButton:hover, .deleteButton:hover {
   transform: scale(1.5);
   cursor: pointer;
   color: red
@@ -271,6 +281,13 @@ ol ol {
 
   .rectangle-list li {
     padding: 0.4em 2em 0.4em 0.8em;
+  }
+
+  .post-child-2 {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    margin-left: 15px;
   }
 
   /* .post-child-2 {
