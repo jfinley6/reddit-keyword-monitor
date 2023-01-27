@@ -5,15 +5,12 @@ class PostsController < ApplicationController
     def index
         get_messages
         get_posts
-        @logs = `tail -n 10 log/development.log`
-        @display_messages = IO.readlines('log/development.log').last(10).reverse
-        @subreddit_name = Setting.first.subreddit_name
+        get_header_info
+    end
 
-        if Setting.first.refresh == false
-            @auto_title = "Start Checking Posts Automatically"
-        else
-            @auto_title = "Stop Checking Posts Automatically"
-        end
+    def show
+        get_header_info
+        @post = Post.find(params[:id])
     end
 
     def auto_check_posts
@@ -34,7 +31,7 @@ class PostsController < ApplicationController
             return
         end
         Setting.first.update(keywords: params[:keywords]) 
-        logger.warn "Keyword".pluralize(params[:keywords].split(",").length) + " changed to " + params[:keywords].gsub(",", ", ") + " at " + Time.now.strftime("%H:%M:%S")
+        logger.warn "Keyword".pluralize(params[:keywords].split(",").length) + " changed to " + params[:keywords].gsub(",", ", ") + " at " + Time.now.strftime("%H:%M:%S").sub(/^(0+:?)*/, '')
         redirect_to root_path
     end
 
@@ -44,7 +41,7 @@ class PostsController < ApplicationController
             return
         end
         Setting.first.update(subreddit_name: params[:subreddit_name])
-        logger.warn "Subreddit name changed to " + params[:subreddit_name].to_s + " at " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
+        logger.warn "Subreddit Name Changed To " + params[:subreddit_name].to_s + " at " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
         
         get_messages
         render turbo_stream: [
@@ -53,17 +50,17 @@ class PostsController < ApplicationController
                 locals: { subreddit_name: Setting.first.subreddit_name }),
                 turbo_stream.replace(:messages,
                     partial: "posts/messages",
-                    locals: { display_messages: @messages, empty_log: @empty_log })     
+                    locals: { display_messages: @display_messages, empty_log: @empty_log })     
         ]
     end
 
     def delete_all_posts
         if Post.all.count == 0
-            logger.warn "No Posts To Delete at " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
+            logger.warn "No Posts To Delete At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
         else
-           logger.warn "All Posts Deleted at " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
+           logger.warn "All Posts Deleted At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
         end
-        Post.destroy_all
+        Post.update_all(deleted: true)
         update_messages_and_posts
     end
 
@@ -72,7 +69,7 @@ class PostsController < ApplicationController
         update_messages_and_posts
     end
 
-    def show
+    def check_posts
         Post.check_reddit_posts
 
         update_messages_and_posts
@@ -86,6 +83,17 @@ class PostsController < ApplicationController
     end
     
     private
+
+    def get_header_info
+        @subreddit_name = Setting.first.subreddit_name
+
+        if Setting.first.refresh == false
+            @auto_title = "Start Checking Posts Automatically"
+        else
+            @auto_title = "Stop Checking Posts Automatically"
+        end
+        
+    end
 
     def refresh_page
         respond_to do |format|
@@ -106,9 +114,9 @@ class PostsController < ApplicationController
     end
     
     def get_messages
-        @messages = IO.readlines('log/development.log').last(10).reverse
-        if @messages.count < 10
-            @empty_log = 10 - @messages.count
+        @display_messages = IO.readlines('log/development.log').last(10).reverse
+        if @display_messages.count < 10
+            @empty_log = 10 - @display_messages.count
         else
             @empty_log = 0
         end
@@ -120,7 +128,7 @@ class PostsController < ApplicationController
         render turbo_stream: [
             turbo_stream.replace(:messages,
                 partial: "posts/messages",
-                locals: { display_messages: @messages, empty_log: @empty_log }),
+                locals: { display_messages: @display_messages, empty_log: @empty_log }),
                 turbo_stream.replace(:posts,
                 partial: "posts/posts",
                 locals: { posts: @posts, empty_posts: @empty_posts })
