@@ -2,10 +2,13 @@
     <% posts.each do |post| %>
         <li class="post-item">
           <%= highlight("<a target='_blank' class='post-child-1' href='https://reddit.com#{post.url}'>#{post.url}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
-          <%= link_to "Delete", "/delete_post/#{post.id}", class: "post-child-2" %>
+          <div class="post-child-2">
+            <%= link_to "Preview", post_path(post), class: "previewButton", data: { turbo_frame: "_top" } %>
+            <%= link_to "Delete", "/delete_post/#{post.id}", class: "deleteButton" %>
+          </div>
         </li>
       <% end %>
       <% @empty_posts.times do %>
-        <li style="display: flex"><%= pluralize @posts.count, "post"  %> in database</li>
+        <li style="display: flex"><%= pluralize @posts.count, "post" %> in database</li>
       <% end %>
 <% end %>
