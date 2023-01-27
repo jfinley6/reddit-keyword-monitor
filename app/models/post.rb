@@ -21,14 +21,14 @@ class Post < ApplicationRecord
                     else
                         new_post = Post.create!(:title => post["data"]["title"], :url => post["data"]["permalink"], :keywords => Setting.first.keywords.to_s)
                         PostMailer.post_found(new_post[:title], new_post[:url]).deliver!
-                        logger.warn "Email Sent At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
+                        logger.warn "Email Sent At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
                     end
                 end
             }
-            logger.warn "Done Checking Posts At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
+            logger.warn "Done Checking Posts At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
             return
         else
-            logger.warn "No Internet At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm")
+            logger.warn "No Internet At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
             return
         end
     end
