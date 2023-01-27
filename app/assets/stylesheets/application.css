@@ -53,10 +53,10 @@ li {
 
 .previewButton:visited {
   color: blue;
-
 }
 
-.previewButton, .deleteButton {
+.previewButton,
+.deleteButton {
   text-decoration: none;
 }
 
@@ -77,6 +77,17 @@ li {
   color: blue;
 }
 
+.show-item {
+  text-decoration: none;
+  /* width: 95%; */
+  display: inline-block;
+  word-wrap: break-word;
+}
+
+.show-item:visited {
+  color: blue
+}
+
 .post-child-2 {
   grid-area: 1 / 2 / 2 / 3;
   display: flex;
@@ -87,10 +98,11 @@ li {
   margin-right: 5px;
 }
 
-.previewButton:hover, .deleteButton:hover {
+.previewButton:hover,
+.deleteButton:hover {
   transform: scale(1.5);
   cursor: pointer;
-  color: red
+  color: red;
 }
 
 .parent {
@@ -117,6 +129,7 @@ ol {
   padding: 0;
   margin-bottom: 4em;
   text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+  margin-left: 60px
 }
 
 ol ol {
@@ -186,6 +199,52 @@ ol ol {
   background: #fa8072;
   height: 2em;
   width: 2em;
+  line-height: 2em;
+  text-align: center;
+  font-weight: bold;
+}
+
+.show-list {
+  width: 60%;
+  white-space: normal;
+}
+
+.show-list li {
+  position: relative;
+  align-items: center;
+  padding: 0.4em 0.4em 0.4em 0.8em;
+  *padding: 0.4em;
+  padding-right: 15px;
+  margin: 0.5em 0 0.5em 0em;
+  background: #ddd;
+  color: #444;
+  text-decoration: none;
+  text-align: center;
+  width: 90%;
+  display: flex;
+  justify-content: center;
+}
+
+li > a {
+  text-decoration: none;
+}
+
+li > a:visited {
+  color: blue;
+}
+
+.show-list li:before {
+  content: "" attr(data-info) "";
+  counter-increment: li;
+  position: absolute;
+  left: -6.5em;
+  top: 50%;
+  margin-top: -1em;
+  padding-left: 5px;
+  padding-right: 5px;
+  background: #fa8072;
+  height: 2em;
+  width: 75px;
   line-height: 2em;
   text-align: center;
   font-weight: bold;
