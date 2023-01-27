@@ -1,0 +1,20 @@
+<div style="display: flex; flex-direction: column; align-items: center">
+    <%= link_to '← Back', root_path, class: "post-button" %>
+    <ol class="show-list">
+        <li style="display: flex; align-items:center" data-info="Subreddit">
+           <%= link_to "#{@post.subreddit}", "http://reddit.com/r/#{@post.subreddit}", target: "_blank" %>
+        </li>
+        <li style="display: flex; align-items:center" data-info="Post Title">
+            <strong><%= @post.title %></strong>
+        </li>
+        <li style="display: flex; align-items:center" data-info="Author">
+
+        </li>
+        <li style="display: flex; align-items:center; word-wrap: break-word" data-info="Post URL">
+            <%= highlight("<a target='_blank' class='show-item' href='https://reddit.com#{@post.url}'>#{@post.url}</a>", @post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
+        </li>
+        <li style="display: flex; align-items:center" data-info="Posted at">
+
+        </li>
+    </ol>
+</div>
