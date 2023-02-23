@@ -1,13 +1,13 @@
-<div class="tooltip" style="text-align: center">
-    <h1 class="page-title">Reddit Post Keyword Monitor </h1>
+<div style="text-align: center">
+    <h1 class="mb-4 mt-8 text-4xl font-extrabold leading-none tracking-tight text-gray-900 md:text-5xl lg:text-6xl dark:text-white">Reddit Post Keyword Monitor </h1>
 </div>
 <%= render partial: "posts/subreddit", locals: { subreddit_name: @subreddit_name } %>
-<h3 style="text-align: center">Selected Keywords: <%= Setting.first.keywords.gsub(",", ", ") %> </h3>
+<h3 class="mb-4 text-lg font-normal text-gray-500 lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400" style="text-align: center">Selected Keywords: <span class="text-blue-600"><%= Setting.first.keywords.gsub(",", ", ") %></span> </h3>
 <% if Setting.first.refresh == false %>
 <div style="display: flex; justify-content: center">
-  <%= link_to "Check posts", "/check_posts", style: "text-decoration: none", class: "post-button"  %>
+  <%= link_to "Check posts", "/check_posts", style: "text-decoration: none", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  %>
 </div>
 <% end %>
 <div style="display: flex; justify-content: center; margin-bottom: 15px">
-  <%= link_to @auto_title, "/auto_check", style: "text-decoration: none; margin-top: 10px", class: "post-button", remote: true  %>
+  <%= link_to @auto_title, "/auto_check", style: "text-decoration: none;", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800", remote: true  %>
 </div>
