@@ -31,7 +31,7 @@ class PostsController < ApplicationController
             return
         end
         Setting.first.update(keywords: params[:keywords]) 
-        logger.warn "Keyword".pluralize(params[:keywords].split(",").length) + " changed to " + params[:keywords].gsub(",", ", ") + " at " + Time.now.strftime("%H:%M:%S").sub(/^(0+:?)*/, '')
+        logger.warn "Keyword".pluralize(params[:keywords].split(",").length) + " changed to " + params[:keywords].gsub(",", ", ") + " at " + Time.now.strftime("%I:%M:%p").sub(/^(0+:?)*/, '')
         redirect_to root_path
     end
 
