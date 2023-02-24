@@ -77,7 +77,7 @@ Your .env file should match what is above with the x's replaced with your specif
 Run the following command in your terminal and paste http://localhost:3000 into your browser
 
 ```ruby
- ./bin/dev
+ rails s
 ```
 
 
@@ -91,7 +91,7 @@ On this page, you can update the subreddit and keywords you want to monitor. If 
 - "Subreddit Name changed to ..." 
 - "No internet
 
-Clicking "Start Checking Posts Automcatically will run the program every minute and can be turned off when desired. Clicking the button will prompt a popup from your computer asking for permission to run the program in the backround.
+Clicking "Start Checking Posts Automatically" will run the program every minute and can be turned off when desired. Clicking the button will prompt a popup from your computer asking for permission to run the program in the backround.
 
 
 ### Questions
