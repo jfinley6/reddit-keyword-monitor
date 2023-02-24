@@ -81,7 +81,7 @@ Run the following command in your terminal and paste http://localhost:3000 into 
 ```
 
 
-![program screenshot](https://i.imgur.com/xjhnmRx.png)
+![program screenshot](https://i.imgur.com/B0RAMDv.png)
 
 On this page, you can update the subreddit and keywords you want to monitor. If you click "Check Posts", the program will look for posts and check for any that have the keywords you specify in the title. If it finds one, it will send you an email and add the post to the list on the right. The list on the left will update you with the output of checking posts. Output includes:
 
