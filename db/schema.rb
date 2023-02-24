@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_12_003948) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_24_001516) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -22,6 +22,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_12_003948) do
     t.string "keywords"
     t.boolean "deleted", default: false
     t.string "subreddit"
+    t.string "created_utc"
+    t.string "author"
   end
 
   create_table "settings", force: :cascade do |t|
