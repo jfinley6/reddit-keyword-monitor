@@ -1,20 +1,21 @@
 <div style="display: flex; flex-direction: column; align-items: center">
-    <%= link_to '← Back', root_path, class: "post-button" %>
+    <%= link_to '← Back', root_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
     <ol class="show-list">
         <li style="display: flex; align-items:center" data-info="Subreddit">
-           <%= link_to "#{@post.subreddit}", "http://reddit.com/r/#{@post.subreddit}", target: "_blank" %>
+           <%= link_to "reddit.com/r/#{@post.subreddit}", "http://reddit.com/r/#{@post.subreddit}", target: "_blank" %>
         </li>
-        <li style="display: flex; align-items:center" data-info="Post Title">
+        <li style="display: flex; align-items:center" data-info="Title">
             <strong><%= @post.title %></strong>
         </li>
         <li style="display: flex; align-items:center" data-info="Author">
-
+            <%= link_to "reddit.com/u/#{@post.author}", "http://reddit.com/u/#{@post.author}", target: "_blank", style:"color: blue" %>
         </li>
         <li style="display: flex; align-items:center; word-wrap: break-word" data-info="Post URL">
-            <%= highlight("<a target='_blank' class='show-item' href='https://reddit.com#{@post.url}'>#{@post.url}</a>", @post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
+            <span style="color: blue"><%= highlight("<a target='_blank' class='show-item' href='https://reddit.com#{@post.url}'>#{@post.url}</a>", @post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %></span>
         </li>
         <li style="display: flex; align-items:center" data-info="Posted at">
-
+            <%= Time.at(@post.created_utc.to_i).to_datetime.strftime("Posted on %m/%d/%Y") %> 
+            <%= Time.at(@post.created_utc.to_i).to_datetime.strftime("at %I:%M%p") %> 
         </li>
     </ol>
 </div>
