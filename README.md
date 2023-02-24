@@ -77,7 +77,7 @@ Your .env file should match what is above with the x's replaced with your specif
 Run the following command in your terminal and paste http://localhost:3000 into your browser
 
 ```ruby
- rails s
+ ./bin/dev
 ```
 
 
