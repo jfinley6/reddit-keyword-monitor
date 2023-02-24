@@ -195,6 +195,7 @@ ol ol {
   background: #ddd;
   color: #444;
   text-decoration: none;
+  border-radius: 0.3em;
   transition: all 0.3s ease-out;
 }
 
