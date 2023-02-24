@@ -19,7 +19,14 @@ class Post < ApplicationRecord
                     if Post.exists?(title: post["data"]["title"])
                         next
                     else
-                        new_post = Post.create!(:title => post["data"]["title"], :url => post["data"]["permalink"], :keywords => Setting.first.keywords.to_s)
+                        new_post = Post.create!(
+                            :title => post["data"]["title"], 
+                            :url => post["data"]["permalink"], 
+                            :keywords => Setting.first.keywords.to_s, 
+                            :subreddit => post["data"]["subreddit"], 
+                            :author => post["data"]["author"], 
+                            :created_utc => post["data"]["created_utc"]
+                        )
                         PostMailer.post_found(new_post[:title], new_post[:url]).deliver!
                         logger.warn "Email Sent At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
                     end
