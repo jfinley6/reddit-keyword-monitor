@@ -21,6 +21,8 @@ gem 'jquery-rails'
 
 gem 'rainbow'
 
+gem "meta-tags"
+
 # Use postgresql as the database for Active Record
 gem "pg", "~> 1.1"
 
@@ -44,6 +46,10 @@ gem "figaro"
 gem "rspec"
 
 gem "httpparty"
+
+gem "animate-rails"
+
+gem "animate.css-rails"
 
 gem 'whenever', require: false
 
