@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "posts" do %>
-    <% posts.each do |post| %>
+    <% @posts.each do |post| %>
         <li class="post-item">
           <%= highlight("<a target='_blank' class='post-child-1' href='https://reddit.com#{post.url}'>#{post.url}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
           <div class="post-child-2">
