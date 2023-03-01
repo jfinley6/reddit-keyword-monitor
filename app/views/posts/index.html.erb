@@ -1,41 +1,62 @@
 <%# <% if Setting.first.loading == true %> 
   <%# <div class="loader"></div> %>
 <%# <% end %> 
-<% if Setting.first.refresh == false %>
-    <div style="display: flex; justify-content: space-evenly">
-      <%= form_tag "/edit_subreddit_cookies", method: :get do %>
-        <div style="display: flex; flex-direction: column; align-items: start;  padding-bottom: 10px">
-          <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subreddit</div>
-          <%= text_field_tag :subreddit_name, Setting.first.subreddit_name, style: "height: 20px", autocomplete: 'off', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-          <%= submit_tag "Update Subreddit", style: "margin-top: 8px", class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-        </div>
-      <% end %>
-      <%= form_tag "/edit_keywords_cookies", method: :get do %>
-        <div style="display: flex; flex-direction: column; align-items: start;  padding-bottom: 10px">
-          <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keywords</div>
-          <%= text_field_tag :keywords, Setting.first.keywords, style: "height: 20px", autocomplete: 'off', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
-          <%= submit_tag "Update Keywords", style: "margin-top: 8px", class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-        </div>
-      <% end %>
-    </div>
-  <% end %>
 
-<div class="parent pt-4">
-  <div class="messages" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: break-word">
-    <h3 style="margin-bottom: 0" class="block pb-2 font-medium text-gray-900 dark:text-white">Activity Log (Last 10) 
-      <%= link_to "Delete All", "/delete_all_messages", class:"text-white text-xs bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-    </h3>
-    <ol class="rounded-list">
-        <%= render partial: "posts/messages", locals: { display_messages: @display_messages } %>
-    </ol>
-  </div>
-  <div class="posts" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: anywhere">
-    <h3 style="margin-bottom: 0" class="block pb-2 font-medium text-gray-900 dark:text-white">Matching Posts (Last 10) 
-      <%= link_to "Delete All", "/delete_all_posts", class:"text-white text-xs bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-    </h3>
-    <ol class="rectangle-list">
-      <%= render partial: "posts/posts", locals: { posts: @posts } %>
-    </ul>
+<div id="index-element">
+  <% if Setting.first.refresh == false %>
+      <div style="display: flex; justify-content: space-evenly">
+        <%= form_tag "/edit_subreddit_cookies", method: :get do %>
+          <div style="display: flex; flex-direction: column; align-items: start;  padding-bottom: 10px">
+            <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Subreddit</div>
+            <%= text_field_tag :subreddit_name, Setting.first.subreddit_name, style: "height: 20px", autocomplete: 'off', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            <%= submit_tag "Update Subreddit", style: "margin-top: 8px", class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+          </div>
+        <% end %>
+        <%= form_tag "/edit_keywords_cookies", method: :get do %>
+          <div style="display: flex; flex-direction: column; align-items: start;  padding-bottom: 10px">
+            <div class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Keywords</div>
+            <%= text_field_tag :keywords, Setting.first.keywords, style: "height: 20px", autocomplete: 'off', class: "bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" %>
+            <%= submit_tag "Update Keywords", style: "margin-top: 8px", class: "w-full text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  
+  <div class="w-full">
+    <div class="parent pt-4">
+      <div class="messages" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: break-word">
+        <h3 style="margin-bottom: 0" class="block pb-2 font-medium text-gray-900 dark:text-white">Activity Log (Last 10)
+          <%= link_to "Delete All", "/delete_all_messages", class:"text-white text-xs bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+        </h3>
+        <ol class="rounded-list">
+            <%= render partial: "posts/messages", locals: { display_messages: @display_messages, empty_log: @empty_log } %>
+        </ol>
+      </div>
+      <div class="posts" style="display: flex; flex-direction: column; align-items: center; overflow-wrap: anywhere">
+        <h3 style="margin-bottom: 0" class="block pb-2 font-medium text-gray-900 dark:text-white">Matching Posts (Last 10)
+          <%= link_to "Delete All", "/delete_all_posts", class:"text-white text-xs bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
+        </h3>
+        <ol class="rectangle-list">
+          <%= render partial: "posts/posts", locals: { posts: @posts, empty_posts: @empty_posts } %>
+        </ul>
+      </div>
+    </div>
   </div>
 </div>
-</div>
+
+<script>
+  $(document).ready(function () {
+    setInterval(function(){
+      $.get("/messages", function(data){
+      $(".rounded-list").html(data)
+  },
+  "html")
+      $.get("/posts", function(data){
+      $(".rectangle-list").html(data)
+  },
+  "html")
+}, 30000);
+    
+
+})
+</script>
