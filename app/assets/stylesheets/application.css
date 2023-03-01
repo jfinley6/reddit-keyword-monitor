@@ -2,6 +2,12 @@
 @tailwind components;
 @tailwind utilities;
 
+.animate__animated.animate__slideInLeft {
+
+  animation: slideInLeft; /* referring directly to the animation's @keyframe declaration */
+  animation-duration: 0.8s; /* don't forget to set a duration! */
+}
+
 /* body {
   background-color: #5b84b1ff;
 }
