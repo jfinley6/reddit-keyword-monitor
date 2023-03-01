@@ -1,10 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Reddit Post Keyword Monitor</title>
-    <% if Setting.first.refresh == true %>
-      <meta http-equiv="refresh" content=<%= Setting.first.refresh_time %> />
-    <% end %>
+    <%= display_meta_tags site: "Reddit Keyword Monitor" %>
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <%= csrf_meta_tags %>
     <%= csp_meta_tag %>
