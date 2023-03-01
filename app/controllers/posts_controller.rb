@@ -8,6 +8,20 @@ class PostsController < ApplicationController
         get_header_info
     end
 
+    def messages
+        get_messages
+        respond_to do |format|
+          format.html { render :partial => "posts/messages" }  
+        end  
+    end
+
+    def posts
+        get_posts
+        respond_to do |format|
+          format.html { render :partial => "posts/posts" }  
+        end  
+    end
+
     def show
         get_header_info
         @post = Post.find(params[:id])
@@ -81,7 +95,7 @@ class PostsController < ApplicationController
 
         update_messages_and_posts
     end
-    
+
     private
 
     def get_header_info
