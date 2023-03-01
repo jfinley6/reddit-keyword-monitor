@@ -1,8 +1,8 @@
  <%= turbo_frame_tag "messages" do %>
-   <% display_messages.each do |message| %>
+   <% @display_messages.each do |message| %>
           <li><%= message %></li>
         <% end %>
     <% @empty_log.times do %>
-        <li><%= pluralize display_messages.count, "activity log"  %> in database</li>
+        <li><%= pluralize @display_messages.count, "activity log"  %> in database</li>
     <% end %>
 <% end %>
