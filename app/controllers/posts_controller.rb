@@ -29,11 +29,9 @@ class PostsController < ApplicationController
 
     def auto_check_posts
         if Setting.first.refresh == false
-            system "whenever --update-crontab"
             Setting.first.update(refresh: true)
             refresh_page
         else
-            system "crontab -r"
             Setting.first.update(refresh: false)
             refresh_page
         end
