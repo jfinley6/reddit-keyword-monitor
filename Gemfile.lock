@@ -86,6 +86,9 @@ GEM
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
     chronic (0.10.2)
+    clockwork (3.0.2)
+      activesupport
+      tzinfo
     coderay (1.1.3)
     concurrent-ruby (1.2.2)
     crack (0.4.5)
@@ -105,6 +108,7 @@ GEM
       railties (>= 5.0.0)
     figaro (1.2.0)
       thor (>= 0.14.0, < 2)
+    foreman (0.87.2)
     globalid (1.1.0)
       activesupport (>= 5.0)
     hashdiff (1.0.1)
@@ -280,10 +284,12 @@ DEPENDENCIES
   bootsnap
   byebug
   capybara
+  clockwork
   debug
   dotenv
   factory_bot_rails
   figaro
+  foreman
   httpparty
   importmap-rails
   jbuilder
