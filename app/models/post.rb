@@ -28,14 +28,14 @@ class Post < ApplicationRecord
                             :created_utc => post["data"]["created_utc"]
                         )
                         PostMailer.post_found(new_post[:title], new_post[:url]).deliver!
-                        logger.warn "Email Sent At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
+                        logger.warn "Email Sent At " + Time.now.strftime("%I:%M:%S %p").sub(/^(0+:?)*/, '')
                     end
                 end
             }
-            logger.warn "Done Checking Posts At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
+            logger.warn "Done Checking Posts At " + Time.now.strftime("%I:%M:%S %p").sub(/^(0+:?)*/, '')
             return
         else
-            logger.warn "No Internet At " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
+            logger.warn "No Internet At " + Time.now.strftime("%I:%M:%S %p").sub(/^(0+:?)*/, '')
             return
         end
     end
