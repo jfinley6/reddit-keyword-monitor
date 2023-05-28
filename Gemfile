@@ -12,6 +12,10 @@ gem "byebug"
 
 gem "pry"
 
+gem "clockwork"
+
+gem "foreman"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
