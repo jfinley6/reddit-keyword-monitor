@@ -232,6 +232,9 @@ GEM
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
       websocket (~> 1.0)
+    snoo (0.1.2)
+      httparty
+      nokogiri
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -304,6 +307,7 @@ DEPENDENCIES
   rspec
   rspec-rails
   selenium-webdriver
+  snoo
   sprockets-rails
   stimulus-rails
   tailwindcss-rails (~> 2.0)

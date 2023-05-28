@@ -16,6 +16,8 @@ gem "clockwork"
 
 gem "foreman"
 
+gem "snoo"
+
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem "sprockets-rails"
 
