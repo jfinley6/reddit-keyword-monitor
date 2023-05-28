@@ -8,7 +8,7 @@ module Clockwork
     puts "Running!!"
   end
 
-  every(10.seconds, 'frequent.job') do
+  every(ENV["INTERVAL"].to_i.seconds, 'frequent.job') do
     if Setting.first.refresh == true
         Post.check_reddit_posts
     end
