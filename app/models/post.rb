@@ -5,14 +5,11 @@ class Post < ApplicationRecord
 
         if internet_connection?
             
-            response_code = 429
-            while response_code != 200
-                response = HTTParty.get("https://www.reddit.com/r/#{Setting.first.subreddit_name}/new.json")
-                response_code = response.code
-            end
-            
+            reddit = Snoo::Client.new
+            response = reddit.get_listing(subreddit: Setting.first.subreddit_name, page: "new", sort: "new", limit: 25)
             response_body = JSON.parse(response.body)
             posts = response_body["data"]["children"]
+            reddit = nil
 
             posts.each {|post| 
                 if Setting.first.keywords.split(",").any? { |string| post["data"]["title"].downcase.include? string.downcase }
