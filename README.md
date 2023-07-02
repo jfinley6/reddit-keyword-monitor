@@ -74,10 +74,10 @@ Your .env file should match what is above with the x's replaced with your specif
 
 #### 8. Open the program up in your browser
 
-Run the following command in your terminal and paste http://localhost:3000 into your browser
+Run the following command in your terminal and paste http://localhost:3002 into your browser
 
 ```ruby
- ./bin/dev
+ foreman -f Procfile.dev
 ```
 
 
