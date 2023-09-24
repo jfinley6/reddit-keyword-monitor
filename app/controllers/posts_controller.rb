@@ -38,7 +38,7 @@ class PostsController < ApplicationController
     end
     
     def edit_keywords_cookies 
-        if params[:keywords].gsub(", ", ",") == Setting.first.keywords
+        if params[:keywords] == Setting.first.keywords
             redirect_to root_path
             return
         end
