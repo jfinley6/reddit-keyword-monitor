@@ -43,7 +43,7 @@ class PostsController < ApplicationController
             return
         end
         Setting.first.update(keywords: params[:keywords]) 
-        logger.warn "Keyword".pluralize(params[:keywords].split(",").length) + " changed to " + params[:keywords].gsub(",", ", ") + " at " + Time.now.strftime("%I:%M:%S%p").sub(/^(0+:?)*/, '')
+        logger.warn "Keyword".pluralize(params[:keywords].split(",").length) + " changed to " + params[:keywords].gsub(",", ", ") + ": " + Time.now.strftime("%I:%M:%S %p").sub(/^(0+:?)*/, '')
         redirect_to root_path
     end
 
@@ -53,7 +53,7 @@ class PostsController < ApplicationController
             return
         end
         Setting.first.update(subreddit_name: params[:subreddit_name])
-        logger.warn "Subreddit Name Changed To " + params[:subreddit_name].to_s + " at " + Time.now.strftime("%I:%M%p").gsub("AM", "am").gsub("PM", "pm").sub(/^(0+:?)*/, '')
+        logger.warn "Subreddit Name Changed To " + params[:subreddit_name].to_s + ": " + Time.now.strftime("%I:%M:%S %p").sub(/^(0+:?)*/, '')
         
         get_messages
         render turbo_stream: [
