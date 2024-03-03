@@ -1,8 +1,47 @@
- <%= turbo_frame_tag "messages" do %>
-   <% @display_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-    <% @empty_log.times do %>
-        <li><%= pluralize @display_messages.count, "activity log"  %> in database</li>
-    <% end %>
+<%= turbo_frame_tag "messages" do %>
+  <table class="bg-white shadow-sm rounded-lg overflow-hidden w-[90vw] sm:w-[80vw] lg:w-[70vw] xl:w-[40vw] table-fixed">
+    <caption class="px-6 py-2 text-xl font-semibold text-gray-900 bg-gray-200 align-middle">
+      <div class="flex justify-between">
+        <p>Logs (Last 10)</p>
+        <%= link_to "Delete All", "/delete_all_messages", class:"text-white bg-blue-700 hover:bg-blue-800 w-1/4 rounded-lg text-sm flex justify-center items-center focus:outline-none" %>
+      </div>
+    </caption>
+    <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="pl-5 text-left border-r border-b">
+          Time
+        </th>
+        <th scope="col" class="pl-5 text-left w-9/12 border-b">
+          Status
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @display_messages.each do |message| %>
+        <tr>
+          <td class="text-left pl-5 border-b border-r tabular-nums">
+            <%= message.partition(": ").last %>
+          </td>
+          <td class="text-left pl-5 border-b">
+            <%= message.partition(": ").first %>
+          </td>
+        </tr>
+      <% end %>
+      <% @empty_log.times do %>
+        <tr>
+          <td class="text-left pl-5 border-b border-r">
+          </td>
+          <td class="text-left pl-5 border-b">
+            <%= pluralize @display_messages.count, "Log" %> In Database
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tr>
+      <td class="text-xl font-semibold text-gray-900 bg-gray-200">
+      </td>
+      <td class="text-xl font-semibold text-gray-900 bg-gray-200">
+      </td>
+    </tr>
+  </table>
 <% end %>
