@@ -1,3 +1,4 @@
+<div class="absolute top-1 left-2 text-white"><%= @date %></div>
 <div style="text-align: center">
   <h1 class="mb-4 mt-8 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">Reddit Post Keyword Monitor </h1>
 </div>
@@ -8,6 +9,6 @@
     <%= link_to "Check posts", "/check_posts", style: "text-decoration: none", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800"  %>
   </div>
 <% end %>
-<div style="display: flex; justify-content: center">
-  <%= link_to @auto_title, "/auto_check", style: "text-decoration: none;", class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800", remote: true  %>
+<div style="display: flex; justify-content: center" class="mb-4">
+  <%= link_to @auto_title, "/auto_check", style: "text-decoration: none;", class: "auto-check text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800", remote: true  %>
 </div>
