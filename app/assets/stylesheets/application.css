@@ -10,6 +10,35 @@
 td,
 th {
     height: 35px !important;
+    max-height: 35px !important;
+    overflow: hidden;
+}
+
+td {
+    text-overflow: hidden;
+    white-space: nowrap;
+}
+
+.link:visited {
+    color: #551a8b !important;
+}
+
+.link {
+    color: #0000ee;
+}
+
+.preview {
+    height: 30px !important;
+    transition: all 0.1s ease-in-out;
+}
+
+.delete {
+    height: 25px !important;
+    transition: all 0.1s ease;
+}
+
+.preview:hover, .delete:hover {
+    scale: 1.2;
 }
 
 .parent {
