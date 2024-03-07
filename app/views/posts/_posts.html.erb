@@ -1,14 +1,62 @@
-<%= turbo_frame_tag "posts" do %>
+<% if false %>
+  <%= turbo_frame_tag "posts" do %>
     <% @posts.each do |post| %>
-        <li class="post-item">
-          <%= highlight("<a target='_blank' class='post-child-1' href='https://reddit.com#{post.url}'>#{post.url}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
-          <div class="post-child-2">
-            <%= link_to "Preview", post_path(post), class: "previewButton", data: { turbo_frame: "_top" } %>
-            <%= link_to "Delete", "/delete_post/#{post.id}", class: "deleteButton" %>
-          </div>
-        </li>
+      <li class="post-item">
+        <%= highlight("<a target='_blank' class='post-child-1' href='https://reddit.com#{post.url}'>#{post.url}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
+        <div class="post-child-2">
+          <%= link_to "Preview", post_path(post), class: "previewButton", data: { turbo_frame: "_top" } %>
+          <%= link_to "Delete", "/delete_post/#{post.id}", class: "deleteButton" %>
+        </div>
+      </li>
+    <% end %>
+    <% @empty_posts.times do %>
+      <li style="display: flex"><%= pluralize @posts.count, "post" %> in database</li>
+    <% end %>
+  <% end %>
+<% end %>
+<%= turbo_frame_tag "posts" do %>
+  <table class="bg-white shadow-sm rounded-lg overflow-hidden w-90vw sm:w-[90vw] lg:w-[70vw] xl:w-[57.5vw] table-fixed">
+    <caption class="px-6 py-2 text-xl font-semibold text-gray-900 bg-gray-200 align-middle">
+      <div class="flex justify-between">
+        <p>Matching Posts (Last 10)</p>
+        <%= link_to "Delete All", "/delete_all_posts", class:"text-white bg-blue-700 hover:bg-blue-800 rounded-lg text-sm flex px-8 justify-center items-center focus:outline-none" %>
+      </div>
+    </caption>
+    <thead class="text-sm text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+      <tr>
+        <th scope="col" class="pl-5 text-left border-r border-b w-9/12">
+          Post
+        </th>
+        <th scope="col" class="text-center border-b border-r w-min">
+          Preview
+        </th>
+        <th scope="col" class="text-center w-min border-b">
+          Delete
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @posts.each do |post| %>
+        <tr>
+          <td class="text-left pl-5 border-b border-r text-ellipsis">
+            <%= highlight("<a class='link' target='_blank' href='https://reddit.com#{post.url}'>#{post.title}</a>", post.keywords.split(","), highlighter: '<span style="color: red"><strong>\1</strong></span>', sanitize: false)  %>
+          </td>
+          <td class="border-b border-r">
+            <%= link_to image_tag("preview.png"), post_path(post), class: 'flex justify-center preview', data: { turbo_frame: "_top" } %>
+          </td>
+          <td class="border-b">
+            <%= link_to image_tag("delete.png"), "/delete_post/#{post.id}", class: 'flex justify-center delete' %>
+          </td>
+        </tr>
       <% end %>
-      <% @empty_posts.times do %>
-        <li style="display: flex"><%= pluralize @posts.count, "post" %> in database</li>
-      <% end %>
+    </tbody>
+    <tr>
+      <td class="text-xl font-semibold text-gray-900 bg-gray-200">
+      </td>
+      <td class="text-xl font-semibold text-gray-900 bg-gray-200">
+      </td>
+      <td class="text-xl font-semibold text-gray-900 bg-gray-200">
+      </td>
+    </tr>
+  </table>
 <% end %>
