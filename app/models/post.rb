@@ -4,12 +4,15 @@ class Post < ApplicationRecord
     def self.check_reddit_posts
 
         if internet_connection?
-            
-            reddit = Snoo::Client.new
-            response = reddit.get_listing(subreddit: Setting.first.subreddit_name, page: "new", sort: "new", limit: 25)
-            response_body = JSON.parse(response.body)
-            posts = response_body["data"]["children"]
-            reddit = nil
+
+            begin
+                response = HTTParty.get("https://www.reddit.com/r/#{Setting.first.subreddit_name}/new.json?limit=25", timeout: 5)
+                response_body = JSON.parse(response.body)
+                posts = response_body["data"]["children"]
+            rescue Net::OpenTimeout
+                logger.warn "Reddit Connection Timeout: " + Time.now.strftime("%I:%M:%S %p").sub(/^(0+:?)*/, '')
+                return
+            end
 
             posts.each {|post| 
                 if Setting.first.keywords.split(",").any? { |string| post["data"]["title"].downcase.include? string.downcase }
