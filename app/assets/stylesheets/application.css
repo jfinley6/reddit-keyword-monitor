@@ -34,6 +34,7 @@ td {
 
 .delete {
     height: 25px !important;
+    width: 25px !important;
     transition: all 0.1s ease;
 }
 
