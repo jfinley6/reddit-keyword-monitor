@@ -51,7 +51,7 @@ gem "figaro"
 
 gem "rspec"
 
-gem "httpparty"
+gem "httparty"
 
 gem "animate-rails"
 
