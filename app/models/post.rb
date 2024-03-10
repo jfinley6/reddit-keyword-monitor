@@ -6,7 +6,7 @@ class Post < ApplicationRecord
         if internet_connection?
 
             begin
-                response = HTTParty.get("https://www.reddit.com/r/#{Setting.first.subreddit_name}/new.json?limit=25", timeout: 5)
+                response = HTTParty.get("https://www.reddit.com/r/#{Setting.first.subreddit_name}/new.json?limit=25", timeout: 7)
                 response_body = JSON.parse(response.body)
                 posts = response_body["data"]["children"]
             rescue Net::OpenTimeout
@@ -16,7 +16,7 @@ class Post < ApplicationRecord
 
             posts.each {|post| 
                 if Setting.first.keywords.split(",").any? { |string| post["data"]["title"].downcase.include? string.downcase }
-                    if Post.exists?(title: post["data"]["title"])
+                    if Post.exists?(url: post["data"]["permalink"])
                         next
                     else
                         new_post = Post.create!(
