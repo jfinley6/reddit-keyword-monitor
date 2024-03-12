@@ -1,6 +1,6 @@
-<div class="absolute top-1 left-2 text-white"><%= @date %></div>
+<%# <div class="absolute top-1 left-2 text-white"><%= @date %></div> %>
 <div style="text-align: center">
-  <h1 class="mb-4 mt-8 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">Reddit Post Keyword Monitor </h1>
+  <h1 class="mb-4 text-4xl font-extrabold tracking-tight md:text-5xl lg:text-6xl text-white">Reddit Post Keyword Monitor </h1>
 </div>
 <%= render partial: "posts/subreddit", locals: { subreddit_name: @subreddit_name } %>
 <h3 class="mb-4 text-lg font-normal text-white lg:text-xl sm:px-16 xl:px-48 dark:text-gray-400" style="text-align: center">Selected Keywords: <span class="text-blue-600"><%= Setting.first.keywords.gsub(",", ", ") %></span> </h3>
