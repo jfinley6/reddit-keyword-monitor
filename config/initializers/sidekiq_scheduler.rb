@@ -3,8 +3,10 @@ Rails.application.config.after_initialize do
     # Fetch the interval from the database
     scheduler_setting = SchedulerConfigurationsController.get_interval_or_create
     refresh_time = "#{scheduler_setting}s"
-    return refresh_time
   end
+
+  # Allow update during runtime
+  Sidekiq::Scheduler.dynamic = true
   
   Sidekiq.schedule = {
     'check_posts' => {
