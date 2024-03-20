@@ -7,12 +7,17 @@ Rails.application.config.after_initialize do
 
   # Allow update during runtime
   Sidekiq::Scheduler.dynamic = true
+
+  # Check if posts are set to be checked automatically
+  if Setting.first.refresh === true
   
-  Sidekiq.schedule = {
-    'check_posts' => {
-      'class' => 'CheckPosts',
-      'every' => fetch_interval_from_database
+    Sidekiq.schedule = {
+      'check_posts' => {
+        'class' => 'CheckPosts',
+        'every' => fetch_interval_from_database
+      }
     }
-  }
+
+  end
   
 end
