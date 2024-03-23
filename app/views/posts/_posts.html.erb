@@ -33,6 +33,17 @@
           </td>
         </tr>
       <% end %>
+      <% @empty_posts.times do %>
+        <tr>
+          <td class="text-left pl-5 border-b border-r">
+            <%= pluralize @posts.count, "Post" %> In Database
+          </td>
+          <td class="border-b border-r">
+          </td>
+          <td class="border-b">
+          </td>
+        </tr>
+      <% end %>
     </tbody>
     <tr>
       <td class="text-xl font-semibold text-gray-900 bg-gray-200">
