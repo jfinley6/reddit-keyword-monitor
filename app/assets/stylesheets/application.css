@@ -19,10 +19,6 @@ td {
     white-space: nowrap;
 }
 
-.link:visited {
-    color: #551a8b !important;
-}
-
 .link {
     color: #0000ee;
 }
