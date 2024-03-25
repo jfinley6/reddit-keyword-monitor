@@ -1,7 +1,7 @@
 require 'sidekiq-scheduler'
 
 # Services related to getting posts from Reddit
-class CheckPosts
+class CheckPostsJob
   include Sidekiq::Worker
 
   def perform
