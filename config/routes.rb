@@ -3,8 +3,8 @@ Rails.application.routes.draw do
 
   root "posts#index"
   get "/check_posts", to: "posts#check_posts" 
-  get "/edit_keywords_cookies", to: "posts#edit_keywords_cookies"
-  get "/edit_subreddit_cookies", to: "posts#edit_subreddit_cookies"
+  patch "/edit_keywords_cookies", to: "posts#edit_keywords_cookies"
+  patch "/edit_subreddit_cookies", to: "posts#edit_subreddit_cookies"
   get "/delete_all_posts", to: "posts#delete_all_posts"
   get "/delete_all_messages", to: "posts#delete_all_messages"
   get "/auto_check", to: "posts#auto_check_posts"
