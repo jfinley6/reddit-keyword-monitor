@@ -2,6 +2,8 @@
   <%= @post_title %>
 </p>
 <p>
-  <%= "www.reddit.com" + @post_url %>
+  <%= link_to "reddit.com#{@post_url}",
+    "https://www.reddit.com#{@post_url}",
+    target: "_blank"
+  %>
 </p>
-
