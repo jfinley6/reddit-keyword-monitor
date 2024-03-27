@@ -8,9 +8,11 @@ module Clockwork
     puts "Running!!"
   end
 
+  #TODO: Stop initialzing this code once sidekiq is ready to go
   every(ENV["INTERVAL"].to_i.seconds, 'frequent.job') do
     if Setting.first.refresh == true
-        Post.check_reddit_posts
+        RedditPosts.get_posts
+        LogManager.keep_last_10_lines
     end
   end
 
