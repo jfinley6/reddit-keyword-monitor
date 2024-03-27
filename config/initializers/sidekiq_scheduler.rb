@@ -12,8 +12,12 @@ Rails.application.config.after_initialize do
   if Setting.first.refresh === true
   
     Sidekiq.schedule = {
-      'check_posts' => {
-        'class' => 'CheckPosts',
+      'check_posts_job' => {
+        'class' => 'CheckPostsJob',
+        'every' => fetch_interval_from_database
+      },
+      'keep_last_10_lines_job' => {
+        'class' => 'KeepLast10LinesJob',
         'every' => fetch_interval_from_database
       }
     }
