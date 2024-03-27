@@ -82,7 +82,7 @@ class PostsController < ApplicationController
     end
 
     def check_posts
-        Post.check_reddit_posts
+        RedditPosts.get_posts
 
         update_messages_and_posts
     end
