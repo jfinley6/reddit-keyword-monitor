@@ -42,7 +42,11 @@ class RedditPosts
       # Log a warning if there is a timeout connecting to Reddit
       Rails.logger.warn "Reddit Connection Timeout: #{Time.now.strftime('%I:%M:%S %p').sub(/^(0+:?)*/, '')}"
       return
+    rescue
+      Rails.logger.warn "Unexpected Error: #{Time.now.strftime('%I:%M:%S %p').sub(/^(0+:?)*/, '')}"
+      return
     end
+
   end
 
   # This method iterates over a collection of Reddit posts, filters them based on keywords,
