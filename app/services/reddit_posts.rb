@@ -42,8 +42,8 @@ class RedditPosts
       # Log a warning if there is a timeout connecting to Reddit
       Rails.logger.warn "Reddit Connection Timeout: #{Time.now.strftime('%I:%M:%S %p').sub(/^(0+:?)*/, '')}"
       return
-    rescue
-      Rails.logger.warn "Unexpected Error: #{Time.now.strftime('%I:%M:%S %p').sub(/^(0+:?)*/, '')}"
+    rescue => error
+      Rails.logger.warn "#{error}: #{Time.now.strftime('%I:%M:%S %p').sub(/^(0+:?)*/, '')}"
       return
     end
 
